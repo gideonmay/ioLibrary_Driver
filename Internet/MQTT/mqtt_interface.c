@@ -166,11 +166,12 @@ void w5x00_disconnect(Network* n)
  *         that contains the configuration information for the Network.
  *         ip : server iP.
  *         port : server port.
+ * 	   	   my_port_offset : my port offset (default 0).
  * @retval SOCKOK code or SOCKERR code
  */
-int ConnectNetwork(Network* n, uint8_t* ip, uint16_t port)
+int ConnectNetwork(Network* n, uint8_t* ip, uint16_t port, uint8_t my_port_offset)
 {
-	uint16_t myport = 12345;
+	uint16_t myport = 12345 + my_port_offset;
 
 	if(socket(n->my_socket, Sn_MR_TCP, myport, 0) != n->my_socket)
 		return SOCK_ERROR;
